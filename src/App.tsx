@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from '@/i18n';
 
@@ -13,7 +13,13 @@ export default function App() {
       <Text style={styles.icon}>
 	      🎉
       </Text>
-      <Button title={translate(isEnglish ? 'Translate to Portuguese' : 'Translate to English')} onPress={() => setLanguage(isEnglish ? 'pt' : 'en')} />
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.button} onPress={() => setLanguage(isEnglish ? 'pt' : 'en')}>
+          <Text style={styles.buttonText}>
+            {translate(isEnglish ? 'Translate to Portuguese' : 'Translate to English')}
+          </Text>
+        </Pressable>
+      </View>
       <StatusBar style="light" />
     </View>
   );
@@ -27,13 +33,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   message: {
-    marginBottom: 8,
+    marginBottom: 24,
     fontWeight: 'bold',
     fontSize: 20,
     color: '#fff'
   },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    paddingVertical: 50,
+    paddingHorizontal: 32,
+    width: '100%'
+  },
+  button: {
+    paddingVertical: 16,
+    borderRadius: 32,
+    backgroundColor: '#ffffff'
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#171717'
+  },
   icon: {
-    marginBottom: 24,
     fontSize: 60
   }
 });
