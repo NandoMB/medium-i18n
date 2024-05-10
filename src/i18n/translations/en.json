@@ -1,5 +1,11 @@
 {
+  "gramatical_form": {
+    "time": "time",
+    "time_plural": "times"
+  },
   "i18Next is working": null,
   "Translate to English": null,
-  "Translate to Portuguese": null
+  "Translate to Portuguese": null,
+  "Reset counter": null,
+  "You have changed the translation {{count}} times": "You have changed the translation {{count}} $t(gramatical_form.time)"
 }

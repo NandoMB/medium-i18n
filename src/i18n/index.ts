@@ -5,7 +5,8 @@ import useTranslation from './hooks/useTranslation';
 import en from './translations/en.json';
 import pt from './translations/pt.json';
 
-type LanguageCode = keyof typeof resources;
+export type TranslationKey = keyof typeof en;
+export type LanguageCode = keyof typeof resources;
 
 const resources = {
   en: { translation: en },
@@ -15,24 +16,22 @@ const resources = {
 const i18NextInit = function (resources: Resource, fallbackLanguage: LanguageCode, initialLanguage?: LanguageCode) {
   const languages = Object.keys(resources);
   const fallbackLng = fallbackLanguage ?? languages[0];
-  const languageDetectorMiddleware = {
-    type: 'languageDetector',
-    init: () => {},
-    cacheUserLanguage: () => {},
-    detect: () => !!initialLanguage ? initialLanguage : Localization.getLocales()[0].languageCode ?? languages[0]
-  } as LanguageDetectorModule;
-  const initialConfigs = {
-    resources,
-    fallbackLng,
-    compatibilityJSON: 'v3',
-    interpolation: {
-      escapeValue: false
-    }
-  } as const;
   return i18Next
     .use(initReactI18next)
-    .use(languageDetectorMiddleware)
-    .init(initialConfigs);
+    .use({
+      type: 'languageDetector',
+      init: () => {},
+      cacheUserLanguage: () => {},
+      detect: () => initialLanguage ?? Localization.getLocales()[0].languageCode ?? languages[0]
+    } as LanguageDetectorModule)
+    .init({
+      resources,
+      fallbackLng,
+      compatibilityJSON: 'v3',
+      interpolation: {
+        escapeValue: false
+      }
+    });
 };
 
 export { useTranslation };

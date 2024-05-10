@@ -1,5 +1,11 @@
 {
+  "gramatical_form": {
+    "time": "vez",
+    "time_plural": "vezes"
+  },
   "i18Next is working": "i18Next está funcionando",
   "Translate to English": "Traduzir para o Inglês",
-  "Translate to Portuguese": "Traduzir para o Português"
+  "Translate to Portuguese": "Traduzir para o Português",
+  "Reset counter": "Reiniciar contador",
+  "You have changed the translation {{count}} times": "Você trocou a tradução {{count}} $t(gramatical_form.time)"
 }

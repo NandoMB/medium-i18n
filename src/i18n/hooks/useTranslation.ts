@@ -1,6 +1,7 @@
 import { TOptionsBase } from 'i18next';
 import { $Dictionary } from 'i18next/typescript/helpers';
 import { useTranslation as useTranslationI18next } from 'react-i18next';
+import { TranslationKey } from '@/i18n';
 
 export default function useTranslation() {
   const { t, i18n } = useTranslationI18next();
@@ -8,8 +9,8 @@ export default function useTranslation() {
   function setLanguage(language: string) {
     i18n.changeLanguage(language);
   }
-  
-  function translate(key: string, options?: TOptionsBase & $Dictionary) {
+
+  function translate(key: TranslationKey, options?: TOptionsBase & $Dictionary) {
     return t(key, options);
   }
 
